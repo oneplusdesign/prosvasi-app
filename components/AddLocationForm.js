@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { useRoleGuard } from '@/utils/authGuard';
+import { useRoleGuard } from '../utils/authGuard';
 
 export default function AddLocationForm() {
   useRoleGuard(['admin', 'user']);
