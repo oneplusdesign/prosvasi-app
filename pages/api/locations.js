@@ -1,4 +1,4 @@
-// pages/api/seed.js
+// pages/api/locations.js
 import dbConnect from '../../utils/db';
 import mongoose from 'mongoose';
 
@@ -14,41 +14,15 @@ const Location = mongoose.models.Location || mongoose.model('Location', Location
 export default async function handler(req, res) {
   await dbConnect();
 
-  await Location.deleteMany({}); // Προαιρετικά καθαρίζει τα παλιά
+  if (req.method === 'GET') {
+    const locations = await Location.find();
+    return res.status(200).json(locations);
+  }
 
-  const locations = [
-    {
-      name: 'Δημαρχείο Αγρινίου',
-      description: 'Ράμπα και ανελκυστήρας στην είσοδο.',
-      lat: 38.6267,
-      lng: 21.4121,
-    },
-    {
-      name: 'Πλατεία Δημοκρατίας',
-      description: 'Εύκολη πρόσβαση για αμαξίδια.',
-      lat: 38.6251,
-      lng: 21.4074,
-    },
-    {
-      name: 'Γενικό Νοσοκομείο Αγρινίου',
-      description: 'Πλήρως προσβάσιμο με WC ΑμεΑ.',
-      lat: 38.6203,
-      lng: 21.4127,
-    },
-    {
-      name: 'ΚΤΕΛ Αιτωλοακαρνανίας',
-      description: 'Ράμπες σε είσοδο και αποβάθρες.',
-      lat: 38.6261,
-      lng: 21.4156,
-    },
-    {
-      name: 'Αρχαιολογικό Μουσείο Αγρινίου',
-      description: 'Ανελκυστήρας, ράμπες και ακουστική ξενάγηση.',
-      lat: 38.6234,
-      lng: 21.4092,
-    },
-  ];
+  if (req.method === 'POST') {
+    const newLoc = await Location.create(req.body);
+    return res.status(201).json(newLoc);
+  }
 
-  await Location.insertMany(locations);
-  res.status(200).json({ message: 'Sample data inserted' });
+  res.status(405).end(); // Method Not Allowed
 }
