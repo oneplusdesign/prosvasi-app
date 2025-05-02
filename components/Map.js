@@ -1,7 +1,6 @@
-// components/Map.js
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
+import 'leaflet/dist/leaflet.css';
 
 export default function Map() {
   const [locations, setLocations] = useState([]);
@@ -13,7 +12,7 @@ export default function Map() {
   }, []);
 
   return (
-    <MapContainer center={[38.6248, 21.4064]} zoom={14} style={{ height: '90vh', width: '100%' }}>
+    <MapContainer center={[38.6248, 21.4064]} zoom={14} style={{ height: '100%', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
@@ -21,7 +20,8 @@ export default function Map() {
       {locations.map((loc, i) => (
         <Marker key={i} position={[loc.lat, loc.lng]}>
           <Popup>
-            <strong>{loc.name}</strong><br />
+            <strong>{loc.name}</strong>
+            <br />
             {loc.description}
           </Popup>
         </Marker>

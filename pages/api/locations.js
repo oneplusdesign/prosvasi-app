@@ -1,4 +1,3 @@
-// pages/api/locations.js
 import dbConnect from '../../utils/db';
 import mongoose from 'mongoose';
 
@@ -24,5 +23,5 @@ export default async function handler(req, res) {
     return res.status(201).json(newLoc);
   }
 
-  res.status(405).end(); // Method Not Allowed
+  res.status(405).end();
 }

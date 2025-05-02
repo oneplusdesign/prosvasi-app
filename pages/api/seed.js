@@ -1,4 +1,3 @@
-// pages/api/seed.js
 import dbConnect from '../../utils/db';
 import mongoose from 'mongoose';
 
@@ -14,7 +13,7 @@ const Location = mongoose.models.Location || mongoose.model('Location', Location
 export default async function handler(req, res) {
   await dbConnect();
 
-  await Location.deleteMany({}); // Προαιρετικά καθαρίζει τα παλιά
+  await Location.deleteMany({});
 
   const locations = [
     {
