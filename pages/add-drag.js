@@ -1,9 +1,8 @@
+// pages/add-drag.js
 import dynamic from 'next/dynamic';
 
-const AddLocationDrag = dynamic(() => import('../components/AddLocationDrag'), {
-  ssr: false,
-});
+const AddDragView = dynamic(() => import('../components/AddDragView'), { ssr: false });
 
-export default function AddDragPage() {
-  return <AddLocationDrag />;
+export default function AddDragWrapper() {
+  return <AddDragView />;
 }
