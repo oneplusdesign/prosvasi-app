@@ -1,2 +1,4 @@
-// Page: add
-export default function Add() { return <div>Add Page</div>; }
+import AddLocationForm from '@/components/AddLocationForm';
+export default function AddPage() {
+  return <AddLocationForm />;
+}

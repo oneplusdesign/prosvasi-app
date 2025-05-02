@@ -1,2 +1,3 @@
-// Page: login
-export default function Login() { return <div>Login Page</div>; }
+export default function LoginPage() {
+  return <div>Σελίδα Σύνδεσης</div>;
+}
