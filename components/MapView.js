@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-
-const icons = {
-  'Ράμπα': new L.Icon({ iconUrl: '/icons/ramp.png', iconSize: [32, 32] }),
-  'Χώρος Στάθμευσης': new L.Icon({ iconUrl: '/icons/parking.png', iconSize: [32, 32] }),
-  'Τουαλέτα ΑμεΑ': new L.Icon({ iconUrl: '/icons/toilet.png', iconSize: [32, 32] }),
-  'Ανελκυστήρας': new L.Icon({ iconUrl: '/icons/elevator.png', iconSize: [32, 32] }),
-  'Διάβαση': new L.Icon({ iconUrl: '/icons/crosswalk.png', iconSize: [32, 32] }),
-};
 
 export default function MapView() {
   const [locations, setLocations] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [category, setCategory] = useState('');
   const [search, setSearch] = useState('');
+
+  const icons = useMemo(() => ({
+    'Ράμπα': new L.Icon({ iconUrl: '/icons/ramp.png', iconSize: [32, 32] }),
+    'Χώρος Στάθμευσης': new L.Icon({ iconUrl: '/icons/parking.png', iconSize: [32, 32] }),
+    'Τουαλέτα ΑμεΑ': new L.Icon({ iconUrl: '/icons/toilet.png', iconSize: [32, 32] }),
+    'Ανελκυστήρας': new L.Icon({ iconUrl: '/icons/elevator.png', iconSize: [32, 32] }),
+    'Διάβαση': new L.Icon({ iconUrl: '/icons/crosswalk.png', iconSize: [32, 32] }),
+  }), []);
 
   useEffect(() => {
     const fetchLocations = async () => {
