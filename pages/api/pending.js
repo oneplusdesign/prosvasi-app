@@ -1,1 +1,0 @@
-// Pending Points API
